@@ -980,25 +980,25 @@ proc ::Mat_Manager::main {} {
    ##set ::Mat_Manager::matdir_base "C:/Altair/hw7.0/hm/scripts/MATERIAUX"
    set ::Mat_Manager::matdir_base "$::env(MAT_MGR)";
 
-   if { [string first "standard" [string tolower $::Mat_Manager::template]] != -1 || [string first "explicit" [string tolower $::Mat_Manager::template]] != -1} {
+   if { [string first "standard" $::Mat_Manager::template] != -1 || [string first "explicit" $::Mat_Manager::template] != -1} {
       set ::Mat_Manager::solver abaqus
       set solver1 ABAQUS;
-   } elseif { [string first "dyna" [string tolower $::Mat_Manager::template]] != -1 } {
+   } elseif { [string first "dyna" $::Mat_Manager::template] != -1 } {
       set ::Mat_Manager::solver lsdyna
       set solver1 LS-DYNA
-   } elseif { [string first "radioss" [string tolower $::Mat_Manager::template]] != -1 } {
+   } elseif { [string first "radioss" $::Mat_Manager::template] != -1 } {
         set ::Mat_Manager::solver radioss
         set solver1 RADIOSS
-   } elseif { [string first "pamcrash2g" [string tolower $::Mat_Manager::template]] != -1 } {
+   } elseif { [string first "pamcrash2g" $::Mat_Manager::template] != -1 } {
         set ::Mat_Manager::solver pamcrash2g
         set solver1 PAM2G
-   } elseif { [string first "ansys" [string tolower $::Mat_Manager::template]] != -1 } {
+   } elseif { [string first "ansys" $::Mat_Manager::template] != -1 } {
       set ::Mat_Manager::solver ansys
       set solver1 ANSYS
-   } elseif { [string first "general" [string tolower $::Mat_Manager::template]] != -1 && [string first "nastran" [string tolower $::Mat_Manager::template]] != -1} {
+   } elseif { [string first "general" $::Mat_Manager::template] != -1 && [string first "nastran" $::Mat_Manager::template] != -1} {
       set ::Mat_Manager::solver nastran
       set solver1 NASTRAN
-   } elseif { [string first "optistruct" [string tolower $::Mat_Manager::template]] != -1 } {
+   } elseif { [string first "optistruct" $::Mat_Manager::template] != -1 } {
       set ::Mat_Manager::solver optistruct
       set solver1 OPTISTRUCT
    } else {
