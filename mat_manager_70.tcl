@@ -11,6 +11,7 @@ namespace eval ::Mat_Manager {
    variable dialog
    variable tre
    variable matdir
+   variable dbpath
    variable matlist
    variable mat_to_add
    variable template
@@ -978,7 +979,7 @@ proc ::Mat_Manager::main {} {
 
    ##Set the root material database directory
    ##set ::Mat_Manager::matdir_base "C:/Altair/hw7.0/hm/scripts/MATERIAUX"
-   set ::Mat_Manager::matdir_base "$::env(MAT_MGR)";
+   set ::Mat_Manager::matdir_base [file normalize "$::env(MAT_MGR)"];
 
    if { [string first "standard" $::Mat_Manager::template] != -1 || [string first "explicit" $::Mat_Manager::template] != -1} {
       set ::Mat_Manager::solver abaqus
@@ -1008,6 +1009,8 @@ proc ::Mat_Manager::main {} {
 
    ##Set the material database directory
    set ::Mat_Manager::matdir "$::Mat_Manager::matdir_base/$::Mat_Manager::solver/$::Mat_Manager::units"
+   ##set path to the material database
+   set ::Mat_Manger::dbpath [file join $::Mat_Manager::matdir_base "db" "$solver1.$::Mat_Manager::units.db"]
 
    ##Create the GUI   
    set ::Mat_Manager::g_MatListWin .matListWin;
