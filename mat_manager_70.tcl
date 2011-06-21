@@ -971,13 +971,14 @@ proc ::Mat_Manager::SetUnits { args }  {
 proc ::Mat_Manager::main {} {
    
    ##Determine which template is loaded to decide which solver database to use
-   set ::Mat_Manager::template [lindex [hm_info templatefilename] 0];
+   set ::Mat_Manager::template [string tolower [lindex [hm_info templatefilename] 0] ];
 
    ##Set the default units to metric
    set ::Mat_Manager::units metric
 
    ##Set the root material database directory
-    set ::Mat_Manager::matdir_base "C:/Altair/hw7.0/hm/scripts/MATERIAUX"
+   ##set ::Mat_Manager::matdir_base "C:/Altair/hw7.0/hm/scripts/MATERIAUX"
+   set ::Mat_Manager::matdir_base "$::env(MAT_MGR)";
 
    if { [string first "standard" [string tolower $::Mat_Manager::template]] != -1 || [string first "explicit" [string tolower $::Mat_Manager::template]] != -1} {
       set ::Mat_Manager::solver abaqus
