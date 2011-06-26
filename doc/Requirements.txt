@@ -1,0 +1,5 @@
+- Hyperworks v8.0 or higher. As 6/25/11, the lastest release of Hyperworks is verion 11.o
+-  TCL interface for SQLite (http://www.sqlite.org/download.html)
+
+To load the TCL interface for SQLite, add the following instruction to your tcl file:
+	load [file join $path_to_sqlite "tclsqlite3.dll"] Sqlite3;
