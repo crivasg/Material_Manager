@@ -1,0 +1,73 @@
+Material Manager 7.0 Documentation
+
+The following documentation explains the installation and usage of the Material Manager.  In its current form, the Material Manager has support for ABAQUS, ANSYS, LS-DYNA, Nastran and OptiStruct but can be extended to support any other solver that can import and export from HyperMesh.
+
+The material manager consists of a directory structure similar to the following:
+
+ |--ABAQUS
+ |----metric
+ |------Client1
+ |------Client2
+ |------Client3
+ |--ANSYS
+ |----metric
+ |--LSDYNA
+ |----metric
+ |------Client1
+ |------Client2
+ |------Client3
+ |--NASTRAN
+ |----metric
+ |------Client1
+ |------Client2
+ |------Client3
+ |--PAMCRASH2G
+ |----metric
+ |------Client1
+ |------Client2
+ |------Client3
+ |------Faurecia
+ |--RADIOSS
+ |----metric
+ |------Client1
+ |------Client2
+ |------Client3
+ |------profils
+
+
+Each solver has a directory under the main directory.  There are metric and english directories within each to separate the unit systems.  Materials can exist at any level under each solver/unit level and there is no limit to the number of materials or subdirectories.
+
+The materials are stored in the database in the appropriate solver format, by exporting each individual material card into a file.  This allows for greater portability and expandability to add solvers and account for all material types.
+
+
+Installation/Configuration
+To install the Material Manager, setup the mat_manager_70.tcl file as a macro on the User macro page.  Inside the TCL script, at the bottom there is a variable matdir_base.  This is the customizable path to where the database will be stored.  This can be a shared network drive, local drive, or UNIX path.  It points to the “matlib” directory in the above directory structure.
+Copy mat_manager_70.tcl  and MaterialUpdateTools_general.tcl inside hm/scripts/ directory. 
+
+
+The Material Manager has functionality to do the following:
+
+Database –
+	1)  Load a material from the database into the current model 
+2)  Add a material from the current model into the database
+3)  Assign a material to component(s) in the current model
+4)  Create a new directory
+	5)  Delete a directory
+	6)  Rename a directory
+	7)  Rename a material
+	8)  Delete a material
+
+Model –
+Create a material in the current model
+Assign an existing material to component(s)
+	3)  Edit a material via the card editor
+	4)  Delete a material
+	5)  Rename a material
+
+Database:  The ability to create, rename and delete directories makes managing the database easy.  The ability to delete and rename materials is also available.  When renaming a material, the file is modified as well to change the name of the material inside the file.  The “import material” option pulls a material from the database and loads it into the current model.  The “add material” option pulls a material from the current model and places it into the database.  This is done by exporting only the specific material card by using the new *feoutput_select command.  Finally, the “assign material” option will first load the material and then prompt the user for which components to assign the material to.
+
+Model:  “Create material” will take the user to the “create” material collectors panel, where they can create the material using the standard HM methods.  The “edit material” command will take the user to the material card editor for the material  The delete and rename are straight forward.
+
+There is a toggle to switch between metric and english, although the model data will not change depending on the units selected.  The default units are “metric” but can be changed by editing the units variable near the bottom of the script.  
+
+The rescan button will rescan the database if new materials are added either to the database or to the model outside of the Material Manager.
