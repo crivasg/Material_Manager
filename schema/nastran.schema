@@ -1,3 +1,11 @@
+/*
+	the nastran material types avialable are:
+	MAT1 - Defines the material properties for linear, temperature-independent, isotropic materials.
+	MAT2 - Defines the material properties for linear, temperature-independent, anisotropic materials for two-dimensional elements.
+	(more materials types to be added)
+	TABLES1 – Material Property Tabular Function, Form 1
+*/
+
 CREATE TABLE material_name(MID INTEGER, name STRING, type STRING);
 
 CREATE TABLE mat1(MID INTEGER, E REAL, G REAL, NU REAL, RHO REAL, A REAL, TREF REAL, GE REAL, ST REAL, SC REAL, SS REAL);
