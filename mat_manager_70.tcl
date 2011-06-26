@@ -962,6 +962,7 @@ proc ::Mat_Manager::PopupMatMD1 { tree branchesList }  {
 proc ::Mat_Manager::SetUnits { args }  {
 
    set ::Mat_Manager::matdir "$::Mat_Manager::matdir_base/$::Mat_Manager::solver/$::Mat_Manager::units"
+      set ::Mat_Manger::dbpath [file join $::Mat_Manager::matdir_base "db" "$solver1.$::Mat_Manager::units.db"];
    Tree $::Mat_Manager::tre clean;
    ::Mat_Manager::create_recursive_list /
 }
